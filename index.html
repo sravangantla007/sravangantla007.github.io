@@ -1,199 +1,778 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gantla Venkata Sravan - Portfolio</title>
-    <meta name="description" content="Portfolio of Gantla Venkata Sravan, B.Tech. Electrical Engineering at IIT Tirupati, specializing in Embedded Systems.">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Gantla Venkata Sravan - Systems & Embedded Engineering Portfolio. Formerly Head of Avionics Division, Rocketry Club (VelR), IIT Tirupati. Custom PCBs, Teensy 4.1 flight computers, and control systems.">
+  <meta name="author" content="Gantla Venkata Sravan">
+  <meta name="keywords" content="Systems Engineering, Embedded Systems, Rocketry, PCB Design, Teensy 4.1, IIT Tirupati, Gantla Venkata Sravan, Space, Flight Computer, Arduino, Control Systems">
+  <title>SYSTEMS & EMBEDDED DECK // Gantla Venkata Sravan</title>
+  
+  <!-- Custom CSS stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- FontAwesome CDN for clean aerospace icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-content">
-            <a href="#" class="logo">Sravan</a>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#skills">Skills</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <header class="hero" id="home">
-        <div class="container text-center">
-            <h1 class="name">Gantla Venkata Sravan</h1>
-            <p class="tagline">B.Tech. Electrical Engineering | Embedded Systems & Hardware Enthusiast</p>
-            <div class="social-links">
-                <a href="mailto:gvsravan007@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a>
-                <a href="https://github.com/sravangantla007" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://linkedin.com/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+  <!-- CRT Scanline & Screen Effects -->
+  <div class="crt-overlay"></div>
+  <div class="crt-scanline"></div>
+
+  <!-- ==========================================================================
+       HUD NAV BAR
+       ========================================================================== -->
+  <nav class="hud-nav">
+    <a href="#" class="nav-logo">
+      <i class="fa-solid fa-code-branch"></i> SRAVAN_<span>GANTLA</span>
+    </a>
+    
+    <div class="nav-links">
+      <a href="#telemetry" class="nav-link active" id="nav-telemetry">01. TELEMETRY</a>
+      <a href="#projects" class="nav-link" id="nav-projects">02. PROJECTS</a>
+      <a href="#experience" class="nav-link" id="nav-experience">03. CHRONOLOGY</a>
+      <a href="#skills" class="nav-link" id="nav-skills">04. TECH STACK</a>
+      <a href="#contact" class="nav-link" id="nav-contact">05. COMMS</a>
+    </div>
+    
+    <div class="nav-status">
+      <div class="status-indicator">
+        <span class="text-muted">SYS:</span>
+        <span class="status-dot" id="global-status-dot"></span>
+        <span class="mono" id="global-status-lbl" style="color: var(--color-safe); font-weight: bold;">SAFE</span>
+      </div>
+      <div style="border-left: 1px solid rgba(255,255,255,0.1); height: 15px; margin: 0 0.5rem;"></div>
+      <div class="mono text-muted" id="hud-clock">T+00:00:00</div>
+    </div>
+  </nav>
+
+  <!-- ==========================================================================
+       HERO / FLIGHT DECK INTRO
+       ========================================================================== -->
+  <header class="hero container">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-pretitle"><i class="fa-solid fa-angle-right"></i> SYS_INIT_SEQUENCE: RECOVERY COMPLETE</div>
+        <h1 class="hero-title">
+          Gantla Venkata<br>
+          <span>Sravan</span>
+        </h1>
+        <div class="hero-subtitle mono">
+          <i class="fa-solid fa-microchip" style="color: var(--color-cyan);"></i> Systems & Embedded Engineer | Control Systems
+        </div>
+        <p class="hero-desc">
+          B.Tech Electrical Engineering student at <strong>IIT Tirupati</strong>. 
+          Designing and deploying high-reliability flight computers, custom wireless DAQ consoles, and active control systems for advanced amateur rocketry.
+        </p>
+        
+        <div class="hero-hud-data">
+          <div class="hud-stat">
+            <div class="hud-stat-value">8.29</div>
+            <div class="hud-stat-label">IIT TIRUPATI CGPA</div>
+          </div>
+          <div class="hud-stat">
+            <div class="hud-stat-value">VelR</div>
+            <div class="hud-stat-label">SYSTEMS & EMBEDDED LEAD</div>
+          </div>
+          <div class="hud-stat">
+            <div class="hud-stat-value">Teensy 4.1</div>
+            <div class="hud-stat-label">CORE FLIGHT ARCHITECTURE</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Holographic Interactive HUD Widget -->
+      <div class="hero-visual">
+        <div class="hud-circle-outer"></div>
+        <div class="hud-circle-inner"></div>
+        <div class="hud-target-bracket"></div>
+        
+        <div class="hud-center-card hud-panel">
+          <div class="hud-card-header">
+            <span class="hud-card-title"><i class="fa-solid fa-gauge-high"></i> CORE_TELEMETRY</span>
+            <span class="mono" style="color: var(--color-safe); font-size: 0.65rem;"><i class="fa-solid fa-circle-nodes"></i> LINKED</span>
+          </div>
+          <div class="hud-card-body">
+            <div class="term-line"><span class="text-muted">[SYS]</span> ONBOARD PROC: TEENSY 4.1</div>
+            <div class="term-line"><span class="text-muted">[SYS]</span> FREQ: 600 MHz (ARM Cortex-M7)</div>
+            <div class="term-line"><span class="text-muted">[SYS]</span> CORE TEMP: <span style="color: var(--color-safe);" id="core-temp-val">28.4°C</span></div>
+            <div class="term-line"><span class="text-muted">[SYS]</span> BATT STATE: 7.4V (2S LiPo)</div>
+            <div class="term-line"><span class="text-muted">[SYS]</span> TELEMETRY RFM95W: <span style="color: var(--color-cyan);">READY</span></div>
+            <div class="term-line"><span class="text-muted">[SYS]</span> BARO BMP280: <span style="color: var(--color-cyan);">READY</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       01. TELEMETRY DECK - MAIN DEMO
+       ========================================================================== -->
+  <section id="telemetry" class="container">
+    <div class="section-header">
+      <h2 class="section-title">01. <span>TELEMETRY DECK</span></h2>
+      <div class="section-subtitle">Real-Time Solid Motor Test Bench (HIL Simulation)</div>
+    </div>
+    
+    <div class="dashboard-grid">
+      <!-- Left Column: Graph Plotter & Control Consoles -->
+      <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+        
+        <!-- Live Graph Card -->
+        <div class="hud-panel widget-chart-panel">
+          <div class="panel-header">
+            <div class="panel-title">
+              <i class="fa-solid fa-chart-line"></i> LIVE MOTOR BURNSPEED (THRUST & PRESSURE)
             </div>
-            <a href="Resume.pdf" class="btn btn-primary mt-4" target="_blank"><i class="fas fa-file-pdf"></i> View Resume</a>
-        </div>
-    </header>
-
-    <section id="about" class="section">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <p class="about-text">
-                I am a B.Tech. student in Electrical Engineering at the Indian Institute of Technology (IIT), Tirupati. 
-                I have a strong passion for Embedded Systems, Bare Metal Programming, and PCB Design. I actively contribute 
-                to rocketry and CubeSat projects, specializing in avionics and hardware development.
-            </p>
-        </div>
-    </section>
-
-    <section id="education" class="section bg-light">
-        <div class="container">
-            <h2 class="section-title">Education</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <h3>B.Tech. (Electrical Engineering)</h3>
-                    <p class="institute">Indian Institute of Technology, Tirupati</p>
-                    <p class="details">CGPA: 8.29 | 2024–2028</p>
-                </div>
-                <div class="timeline-item">
-                    <h3>Senior Secondary (XI–XII)</h3>
-                    <p class="institute">Board of Intermediate Education, Andhra Pradesh</p>
-                    <p class="details">Percentage: 92.5% | 2022–2024</p>
-                </div>
-                <div class="timeline-item">
-                    <h3>Secondary (X)</h3>
-                    <p class="institute">Board of Secondary Education, Andhra Pradesh</p>
-                    <p class="details">Percentage: 92.5% | 2022</p>
-                </div>
+            <div style="display: flex; gap: 0.5rem; align-items: center;">
+              <span class="mono text-muted" style="font-size: 0.7rem;">ELAPSED:</span>
+              <span class="mono" id="burn-elapsed" style="color: var(--color-cyan); font-weight: bold; min-width: 45px;">T+0.0s</span>
             </div>
-        </div>
-    </section>
-
-    <section id="experience" class="section">
-        <div class="container">
-            <h2 class="section-title">Positions of Responsibility</h2>
-            <ul class="experience-list">
-                <li>
-                    <strong>Head, Avionics Division</strong> - Rocketry Club (VelR), IIT Tirupati 
-                    <span class="date">Aug. 2025 – Present</span>
-                </li>
-                <li>
-                    <strong>Core Member, CubeSat Team</strong> - Gagan Vedhi, IIT Tirupati 
-                    <span class="date">Aug. 2025 – Present</span>
-                </li>
-                <li>
-                    <strong>Core Member, Rocketry Project</strong> - Gagan Vedhi, IIT Tirupati 
-                    <span class="date">Feb. 2025 – May 2025</span>
-                </li>
-            </ul>
-        </div>
-    </section>
-
-    <section id="projects" class="section bg-light">
-        <div class="container">
-            <h2 class="section-title">Projects</h2>
+          </div>
+          
+          <!-- Telemetry Canvas Chart -->
+          <div class="chart-container">
+            <canvas id="telemetryChart"></canvas>
+          </div>
+          
+          <!-- Real-Time Ignition & State Controls -->
+          <div class="control-bar">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <span class="mono text-muted" style="font-size: 0.75rem;">STATE:</span>
+              <span class="state-box safe" id="system-state-box">SYSTEM_SAFE</span>
+            </div>
             
-            <h3 class="subsection-title">Rocketry Avionics</h3>
-            <div class="grid">
-                <div class="card">
-                    <h3>Wi-Fi Enabled Custom DAQ & Control Unit (v1 & v2)</h3>
-                    <p class="date">Sept. 2025 – Feb. 2026</p>
-                    <p>Designed and fabricated two iterations of a Wi-Fi-enabled DAQ and control unit for solid rocket motor static fires, with rigorously tested hardware and software fail-safes.</p>
-                    <p><strong>Tools:</strong> C/C++, Arduino Mega, PlatformIO, Embedded Systems, PCB Design, Bare Metal Programming</p>
-                    <a href="https://github.com/sravangantla007" target="_blank" class="link"><i class="fab fa-github"></i> View GitHub</a>
-                </div>
-                <div class="card">
-                    <h3>Modular High-Performance Avionics Board v2</h3>
-                    <p class="date">Jan. 2026 – Mar. 2026</p>
-                    <p>Designed a modular avionics board with fail-safes, flight data logging, apogee detection, and parachute deployment; supports active flight control surfaces.</p>
-                    <p><strong>Tools:</strong> C/C++, Teensy 4.1, PlatformIO, PCB Design, Bare Metal Programming</p>
-                    <a href="https://github.com/sravangantla007" target="_blank" class="link"><i class="fab fa-github"></i> View GitHub</a>
-                </div>
-                <div class="card">
-                    <h3>Avionics Board v1</h3>
-                    <p class="date">Feb. 2025 – May 2025</p>
-                    <p>Sole schematic author for the club’s first avionics board.</p>
-                    <p><strong>Tools:</strong> C/C++, Arduino Mega, PlatformIO, PCB Design</p>
-                    <a href="https://github.com/sravangantla007" target="_blank" class="link"><i class="fab fa-github"></i> View GitHub</a>
-                </div>
+            <div style="display: flex; gap: 0.8rem;">
+              <button class="btn-cyber btn-arm" id="btn-arm"><i class="fa-solid fa-shield-halved"></i> ARM</button>
+              <button class="btn-cyber btn-fire" id="btn-fire" disabled><i class="fa-solid fa-fire"></i> IGNITE</button>
+              <button class="btn-cyber btn-abort" id="btn-abort" disabled><i class="fa-solid fa-circle-radiation"></i> ABORT</button>
             </div>
-
-            <h3 class="subsection-title mt-4">Personal Projects</h3>
-            <div class="grid">
-                <div class="card">
-                    <h3>CHOTU – Self-Balancing Two-Wheeled Robot</h3>
-                    <p class="date">2024 – Present</p>
-                    <p>Self-balancing robot with cascaded PID control. Includes incremental hardware upgrades like Wi-Fi telemetry and remote control.</p>
-                    <p><strong>Tools:</strong> MicroPython, Embedded Systems, Control Systems, Wi-Fi</p>
-                    <a href="https://github.com/sravangantla007" target="_blank" class="link"><i class="fab fa-github"></i> View GitHub</a>
-                </div>
-                <div class="card">
-                    <h3>STM32 Bare Metal Custom Library</h3>
-                    <p class="date">Jul. 2025 – Present</p>
-                    <p>Custom bare metal library for STM32 covering clock tree configuration, GPIO, and timers – built without vendor HAL.</p>
-                    <p><strong>Tools:</strong> C, STM32, Bare Metal Programming</p>
-                </div>
-                <div class="card">
-                    <h3>STM32 USB-HID Emulator</h3>
-                    <p class="date">Mar. 2026</p>
-                    <p>Implemented a USB HID device on STM32 that enumerates as a keyboard or mouse on a host PC. Involved deep study of USB specifications.</p>
-                </div>
-                <div class="card">
-                    <h3>nRF52 Health Monitoring System</h3>
-                    <p class="date">Mar. 2026 – Present</p>
-                    <p>Freelance Project: Health monitoring system on nRF52 with Zephyr RTOS; sensor data transmitted to a mobile client over BLE notifications.</p>
-                    <p><strong>Tools:</strong> C, Zephyr RTOS, nRF52, Bluetooth LE</p>
-                </div>
+          </div>
+        </div>
+        
+        <!-- Real-Time Terminal Log Output -->
+        <div class="hud-panel widget-terminal-panel">
+          <div class="panel-header">
+            <div class="panel-title">
+              <i class="fa-solid fa-terminal"></i> ONBOARD DAQ TELEMETRY STREAM (10 Hz CSV)
             </div>
+            <span class="mono" style="font-size: 0.7rem; color: var(--text-muted);">BAUD: 115200</span>
+          </div>
+          
+          <!-- Real-Time Scrolling Console -->
+          <div class="terminal-console" id="terminal-stream">
+            <div class="term-line"><span class="text-muted">[INFO]</span> Initializing Custom DAQ & Control Unit telemetry server on ESP8266 loopback...</div>
+            <div class="term-line"><span class="text-muted">[INFO]</span> Telnet socket listener open on port 2323.</div>
+            <div class="term-line"><span class="text-muted">[INFO]</span> Awaiting ARM command protocol to initiate continuity validation.</div>
+            <div class="term-line term-input-prompt">GVS_DAQ_CLI> <span class="cursor-blink"></span></div>
+          </div>
         </div>
-    </section>
-
-    <section id="skills" class="section">
-        <div class="container">
-            <h2 class="section-title">Technical Skills</h2>
-            <div class="skills-container">
-                <div class="skill-category">
-                    <h3>Programming Languages</h3>
-                    <div class="tags">
-                        <span class="tag">C/C++</span>
-                        <span class="tag">MicroPython</span>
-                        <span class="tag">Python</span>
-                        <span class="tag">C#</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Embedded & Hardware</h3>
-                    <div class="tags">
-                        <span class="tag">Bare Metal Programming</span>
-                        <span class="tag">Zephyr RTOS</span>
-                        <span class="tag">PCB Design</span>
-                        <span class="tag">STM32</span>
-                        <span class="tag">nRF52</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Tools & OS</h3>
-                    <div class="tags">
-                        <span class="tag">Git</span>
-                        <span class="tag">PlatformIO</span>
-                        <span class="tag">Ubuntu/Linux</span>
-                        <span class="tag">BusyBox</span>
-                        <span class="tag">MATLAB</span>
-                        <span class="tag">LTspice</span>
-                    </div>
-                </div>
+      </div>
+      
+      <!-- Right Column: Micro-Sensor Health & Thermocouples -->
+      <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+        
+        <!-- Onboard Status Map -->
+        <div class="hud-panel" style="padding: 1.5rem;">
+          <div class="panel-header" style="margin-bottom: 1rem;">
+            <div class="panel-title">
+              <i class="fa-solid fa-circle-nodes"></i> HARDWARE HEALTH MONITOR
             </div>
+          </div>
+          
+          <div class="node-grid-3c">
+            <div class="sys-val-box">
+              <div class="sys-val-lbl">THRUST (MAX)</div>
+              <div class="sys-val-num" id="peak-thrust-lbl">0.0 N</div>
+            </div>
+            <div class="sys-val-box">
+              <div class="sys-val-lbl">CHAMBER PSI</div>
+              <div class="sys-val-num" id="peak-pressure-lbl">0.0</div>
+            </div>
+            <div class="sys-val-box">
+              <div class="sys-val-lbl">IGNITER LOOP</div>
+              <div class="sys-val-num safe" id="igniter-continuity-lbl">OK (5.1V)</div>
+            </div>
+          </div>
+          
+          <div class="node-grid-3c" style="margin-top: 0.8rem;">
+            <div class="sys-val-box">
+              <div class="sys-val-lbl">ESP SIGNAL</div>
+              <div class="sys-val-num safe" style="color: var(--color-cyan);">-48 dBm</div>
+            </div>
+            <div class="sys-val-box">
+              <div class="sys-val-lbl">LOGGING FILE</div>
+              <div class="sys-val-num" id="logging-status-lbl">STANDBY</div>
+            </div>
+            <div class="sys-val-box">
+              <div class="sys-val-lbl">CLOCK TIME</div>
+              <div class="sys-val-num" id="daq-clock-lbl">00:00.00</div>
+            </div>
+          </div>
         </div>
-    </section>
-
-    <footer class="footer">
-        <div class="container text-center">
-            <p>&copy; 2026 Gantla Venkata Sravan. All rights reserved.</p>
-            <p><a href="Resume.pdf" target="_blank" class="footer-link">Download Resume</a></p>
+        
+        <!-- Multi-Channel Thermocouple Grid -->
+        <div class="hud-panel" style="padding: 1.5rem;">
+          <div class="panel-header">
+            <div class="panel-title">
+              <i class="fa-solid fa-temperature-three-quarters"></i> 11x K-TYPE THERMOCOUPLES
+            </div>
+            <span class="mono" style="font-size: 0.65rem; color: var(--color-safe);">MAX31855</span>
+          </div>
+          
+          <!-- Grid representing 11 thermal points on the motor sleeve -->
+          <div class="thermal-grid" id="thermocouple-grid">
+            <!-- Dynamically populated or explicitly mapped in HTML for clean structure -->
+            <div class="thermal-node" id="tc-node-1">
+              <div class="thermal-label">TC_01 (Nozzle Base)</div>
+              <div class="thermal-val" id="tc-val-1">27.5 °C</div>
+              <div class="thermal-status"><div class="thermal-bar" id="tc-bar-1" style="width: 10%;"></div></div>
+            </div>
+            <div class="thermal-node" id="tc-node-2">
+              <div class="thermal-label">TC_02 (Combustion Lower)</div>
+              <div class="thermal-val" id="tc-val-2">26.8 °C</div>
+              <div class="thermal-status"><div class="thermal-bar" id="tc-bar-2" style="width: 9%;"></div></div>
+            </div>
+            <div class="thermal-node" id="tc-node-3">
+              <div class="thermal-label">TC_03 (Combustion Mid)</div>
+              <div class="thermal-val" id="tc-val-3">27.1 °C</div>
+              <div class="thermal-status"><div class="thermal-bar" id="tc-bar-3" style="width: 10%;"></div></div>
+            </div>
+            <div class="thermal-node" id="tc-node-4">
+              <div class="thermal-label">TC_04 (Combustion Upper)</div>
+              <div class="thermal-val" id="tc-val-4">26.5 °C</div>
+              <div class="thermal-status"><div class="thermal-bar" id="tc-bar-4" style="width: 8%;"></div></div>
+            </div>
+            <div class="thermal-node" id="tc-node-5">
+              <div class="thermal-label">TC_05 (Throat Entrance)</div>
+              <div class="thermal-val" id="tc-val-5">28.0 °C</div>
+              <div class="thermal-status"><div class="thermal-bar" id="tc-bar-5" style="width: 11%;"></div></div>
+            </div>
+            <div class="thermal-node" id="tc-node-6">
+              <div class="thermal-label">TC_06 (Throat Constriction)</div>
+              <div class="thermal-val" id="tc-val-6">28.4 °C</div>
+              <div class="thermal-status"><div class="thermal-bar" id="tc-bar-6" style="width: 12%;"></div></div>
+            </div>
+            <div class="thermal-node" id="tc-node-7">
+              <div class="thermal-label">TC_07 (Nozzle Bell)</div>
+              <div class="thermal-val" id="tc-val-7">26.9 °C</div>
+              <div class="thermal-status"><div class="thermal-bar" id="tc-bar-7" style="width: 9%;"></div></div>
+            </div>
+            <div class="thermal-node" id="tc-node-8">
+              <div class="thermal-label">TC_08 (Casing Outer)</div>
+              <div class="thermal-val" id="tc-val-8">25.5 °C</div>
+              <div class="thermal-status"><div class="thermal-bar" id="tc-bar-8" style="width: 7%;"></div></div>
+            </div>
+            <div class="thermal-node" id="tc-node-9">
+              <div class="thermal-label">TC_09 (Bulkhead Base)</div>
+              <div class="thermal-val" id="tc-val-9">26.2 °C</div>
+              <div class="thermal-status"><div class="thermal-bar" id="tc-bar-9" style="width: 8%;"></div></div>
+            </div>
+            <div class="thermal-node" id="tc-node-10">
+              <div class="thermal-label">TC_10 (Igniter Base)</div>
+              <div class="thermal-val" id="tc-val-10">27.0 °C</div>
+              <div class="thermal-status"><div class="thermal-bar" id="tc-bar-10" style="width: 10%;"></div></div>
+            </div>
+            <div class="thermal-node" id="tc-node-11" style="grid-column: 1 / 3;">
+              <div class="thermal-label">TC_11 (Structural Adapter Plate)</div>
+              <div class="thermal-val" id="tc-val-11">OPEN CIRCUIT ERROR</div>
+              <div class="thermal-status"><div class="thermal-bar" id="tc-bar-11" style="width: 0%; background: var(--color-fire);"></div></div>
+            </div>
+          </div>
         </div>
-    </footer>
+      </div>
+    </div>
+  </section>
 
-    <script src="script.js"></script>
+  <!-- ==========================================================================
+       02. INTEGRATION MATRIX (PROJECTS)
+       ========================================================================== -->
+  <section id="projects" class="container">
+    <div class="section-header">
+      <h2 class="section-title">02. <span>INTEGRATION MATRIX</span></h2>
+      <div class="section-subtitle">PCB Schematics, Embedded Software & Control Architecture</div>
+    </div>
+    
+    <div class="projects-grid">
+      <!-- Project 1: Modular Avionics Board v2 (FEATURED CARD) -->
+      <div class="hud-panel project-card featured">
+        <div class="proj-header">
+          <div class="proj-title-wrapper">
+            <span class="proj-badge">Flagship Project // Teensy 4.1 flight computer</span>
+            <h3 class="proj-title">Modular High-Performance Flight Avionics v2</h3>
+          </div>
+          <div class="proj-links">
+            <a href="https://github.com/VelR-IITT/Rocketry-Avionics" target="_blank" class="proj-link"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+        
+        <div class="proj-body">
+          <p class="proj-desc">
+            Led the design, schematic capture, and development of a 32-bit advanced flight computer engineered with highly redundant hardware architectures. Features barometric and inertial apogee detection loops, modular wireless transceiver slots, integrated GPS tracking, and a real-time multi-threaded operating system bus. Coordinated key team contributions while performing the vast majority of core design and development work.
+          </p>
+          
+          <div class="proj-specs" style="grid-template-columns: repeat(3, 1fr);">
+            <div class="spec-item">
+              <span class="spec-lbl">Processor:</span>
+              <span class="spec-val">Teensy 4.1 (600MHz M7)</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-lbl">RTOS Core:</span>
+              <span class="spec-val">FreeRTOS (Modular)</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-lbl">Deployment:</span>
+              <span class="spec-val">4 Pyro Channels</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-lbl">Active Control:</span>
+              <span class="spec-val">6 PWM Channels</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-lbl">Data Logging:</span>
+              <span class="spec-val">Onboard QSPI Flash</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-lbl">Primary Baro:</span>
+              <span class="spec-val">BMP280 Sensor</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-lbl">Primary RF:</span>
+              <span class="spec-val">RFM95W / RFM95PW</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-lbl">Redundant Link:</span>
+              <span class="spec-val">GSM Telemetry slot</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-lbl">Expansion:</span>
+              <span class="spec-val">Spare I2C & UART ports</span>
+            </div>
+          </div>
+          
+          <!-- Dynamic SVG style layout diagram -->
+          <div class="hw-diagram-container">
+            <div class="hw-diagram-title"><i class="fa-solid fa-diagram-project"></i> Onboard PCB Block Architecture</div>
+            <div class="hw-block-grid" style="grid-template-columns: repeat(4, 1fr);">
+              <div class="hw-block core" style="grid-column: 1 / 5;">TEENSY 4.1 CORE MICROCONTROLLER (FreeRTOS)</div>
+              <div class="hw-block">MPU-9250 IMU</div>
+              <div class="hw-block">BMP280 Baro</div>
+              <div class="hw-block">QSPI Flash (Log)</div>
+              <div class="hw-block">GPS Node</div>
+              <div class="hw-block">RFM95W FSK</div>
+              <div class="hw-block">GSM Module</div>
+              <div class="hw-block">4x Pyro Driver</div>
+              <div class="hw-block">6x PWM Ports</div>
+            </div>
+          </div>
+          
+          <div class="proj-tags">
+            <span class="proj-tag">FreeRTOS</span>
+            <span class="proj-tag">Bare-Metal C++</span>
+            <span class="proj-tag">QSPI Logging</span>
+            <span class="proj-tag">PCB Layout</span>
+            <span class="proj-tag">RFM95W</span>
+            <span class="proj-tag">Lion Circuits</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Project 2: Custom Wi-Fi DAQ & Control Unit -->
+      <div class="hud-panel project-card">
+        <div class="proj-header">
+          <div class="proj-title-wrapper">
+            <span class="proj-badge">Solid Rocket DAQ & Firing Subsystems</span>
+            <h3 class="proj-title">Wi-Fi Custom DAQ & Control Unit (v1 & v2)</h3>
+          </div>
+          <div class="proj-links">
+            <a href="https://github.com/VelR-IITT/motor-test-monitor" target="_blank" class="proj-link"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+        
+        <div class="proj-body">
+          <p class="proj-desc">
+            Engineered a dual-board data acquisition and safe-arm ignition control console for rocketry static fires. The serial bridge utilizes an ESP8266 module to stream low-latency CSV telemetry. Firing circuitry implements high-power MOSFETs driven by BJT transistors to trigger igniters with robust physical and software fail-safes.
+          </p>
+          
+          <div class="proj-specs">
+            <div class="spec-item">
+              <span class="spec-lbl">MCU Core:</span>
+              <span class="spec-val">Arduino Mega</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-lbl">Serial Bridge:</span>
+              <span class="spec-val">ESP8266 Wi-Fi</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-lbl">Trigger Switch:</span>
+              <span class="spec-val">BJT-Driven MOSFETs</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-lbl">DAQ rate:</span>
+              <span class="spec-val">10 Hz High-Speed Telnet</span>
+            </div>
+          </div>
+          
+          <div class="hw-diagram-container">
+            <div class="hw-diagram-title"><i class="fa-solid fa-diagram-project"></i> Signal Data Flow</div>
+            <div class="hw-block-grid">
+              <div class="hw-block core">WEB CONTROL UI (React)</div>
+              <div class="hw-block" style="grid-column: 1/3;">ESP8266 Wi-Fi serial bridge</div>
+              <div class="hw-block">Mega MCU</div>
+              <div class="hw-block" style="grid-column: 1/4; border-color: var(--color-armed); color: var(--color-armed);">BJT + MOSFET Ignition Controls</div>
+            </div>
+          </div>
+          
+          <div class="proj-tags">
+            <span class="proj-tag">C/C++</span>
+            <span class="proj-tag">ESP8266 Telnet</span>
+            <span class="proj-tag">PCB Layout</span>
+            <span class="proj-tag">FastAPI WebSockets</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Project 3: Freelance BLE Project -->
+      <div class="hud-panel project-card">
+        <div class="proj-header">
+          <div class="proj-title-wrapper">
+            <span class="proj-badge">Freelance Subsystem // Health Wearable</span>
+            <h3 class="proj-title">nRF52 BLE Health Wearable POC</h3>
+          </div>
+          <div class="proj-links">
+            <a href="https://github.com/sravangantla007" target="_blank" class="proj-link"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+        
+        <div class="proj-body">
+          <p class="proj-desc">
+            Developed a breadboard proof-of-concept for a wearable health-tracking device utilizing the nRF52 series system-on-chip. Built and configured the firmware using the Zephyr RTOS framework to read bio-sensor inputs and broadcast telemetry data over Bluetooth Low Energy.
+          </p>
+          
+          <div class="proj-specs">
+            <div class="spec-item">
+              <span class="spec-lbl">MCU Architecture:</span>
+              <span class="spec-val">nRF52 SoC (Cortex-M4)</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-lbl">Operating System:</span>
+              <span class="spec-val">Zephyr RTOS</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-lbl">RF Protocol:</span>
+              <span class="spec-val">Bluetooth Low Energy (BLE)</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-lbl">Implementation:</span>
+              <span class="spec-val">Breadboard POC Prototype</span>
+            </div>
+          </div>
+          
+          <div class="proj-tags">
+            <span class="proj-tag">nRF52 series</span>
+            <span class="proj-tag">Zephyr RTOS</span>
+            <span class="proj-tag">BLE 5.0</span>
+            <span class="proj-tag">Proof of Concept</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Project 4: CHOTU Self-Balancing Robot -->
+      <div class="hud-panel project-card">
+        <div class="proj-header">
+          <div class="proj-title-wrapper">
+            <span class="proj-badge">Control Theory & Telemetry</span>
+            <h3 class="proj-title">CHOTU Self-Balancing Robot</h3>
+          </div>
+          <div class="proj-links">
+            <a href="https://github.com/sravangantla007/CHOTU" target="_blank" class="proj-link"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+        
+        <div class="proj-body">
+          <p class="proj-desc">
+            A self-balancing two-wheeled robot (inverted pendulum) constructed on the Vicharak Shrike Lite development board, which is powered by the RP2040 microcontroller. Employs cascaded PID control loops for real-time balancing, IMU sensor fusion, and live Wi-Fi telemetry streaming via an ESP8266 serial bridge.
+          </p>
+          
+          <div class="proj-specs">
+            <div class="spec-item">
+              <span class="spec-lbl">Developer Board:</span>
+              <span class="spec-val">Shrike Lite (Vicharak)</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-lbl">MCU Architecture:</span>
+              <span class="spec-val">RP2040 Core Processor</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-lbl">Telemetry Bridge:</span>
+              <span class="spec-val">ESP8266 Wi-Fi</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-lbl">Control Loop:</span>
+              <span class="spec-val">Cascaded PID Loops</span>
+            </div>
+          </div>
+          
+          <div class="proj-tags">
+            <span class="proj-tag">Vicharak Shrike Lite</span>
+            <span class="proj-tag">RP2040</span>
+            <span class="proj-tag">ESP8266</span>
+            <span class="proj-tag">PID Control Loops</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Project 5: Avionics Board v1 -->
+      <div class="hud-panel project-card">
+        <div class="proj-header">
+          <div class="proj-title-wrapper">
+            <span class="proj-badge">Legacy Architecture</span>
+            <h3 class="proj-title">Avionics Computer v1</h3>
+          </div>
+          <div class="proj-links">
+            <a href="https://github.com/VelR-IITT/Rocketry-Avionics" target="_blank" class="proj-link"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+        
+        <div class="proj-body">
+          <p class="proj-desc">
+            The foundation schematic for the Rocketry Club's initial telemetry and flight computer boards. Developed as primary hardware schematics designer before stepping into the Avionics Head position.
+          </p>
+          
+          <div class="proj-specs">
+            <div class="spec-item">
+              <span class="spec-lbl">Processor:</span>
+              <span class="spec-val">Arduino Mega 2560 (8-bit)</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-lbl">Sensors:</span>
+              <span class="spec-val">MPU-6050 + BMP180</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-lbl">Logging:</span>
+              <span class="spec-val">Direct SD Card slot</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-lbl">Layout:</span>
+              <span class="spec-val">Double-sided FR4 Layout</span>
+            </div>
+          </div>
+          
+          <div class="proj-tags">
+            <span class="proj-tag">Arduino Framework</span>
+            <span class="proj-tag">C++</span>
+            <span class="proj-tag">SD Card Logging</span>
+            <span class="proj-tag">Hardware Layout</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       03. COMMAND CHRONOLOGY (EXPERIENCE)
+       ========================================================================== -->
+  <section id="experience" class="container">
+    <div class="section-header">
+      <h2 class="section-title">03. <span>COMMAND CHRONOLOGY</span></h2>
+      <div class="section-subtitle">Leadership & Organizational Deployments</div>
+    </div>
+    
+    <div class="timeline">
+      <!-- Experience 1: Avionics Head -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-header">
+          <div class="timeline-title-group">
+            <h3 class="timeline-role">Head of Avionics Division</h3>
+            <span class="timeline-org">Rocketry Club (VelR), IIT Tirupati</span>
+          </div>
+          <span class="timeline-date">Aug. 2025 - Summer 2026</span>
+        </div>
+        <div class="timeline-body">
+          <p class="timeline-desc">
+            Directing a specialized engineering division tasked with researching, fabricating, and debugging the electronic systems for rocket motor test stands and structural flight packages.
+          </p>
+          <ul class="timeline-bullets">
+            <li>Directed the end-to-end design and assembly of high-speed solid rocket motor test-bench DAQ controllers.</li>
+            <li>Established structured team testing checklists, firmware modularity guidelines, and code review procedures for our custom rocket telemetry stacks.</li>
+            <li>Managed parts sourcing, budgets, PCB layout reviews, and professional fabrication contracts.</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Experience 2: CubeSat Team Core -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-header">
+          <div class="timeline-title-group">
+            <h3 class="timeline-role">Avionics System Architecture, CubeSat Team</h3>
+            <span class="timeline-org">Gagan Vedhi Space Tech Club, IIT Tirupati</span>
+          </div>
+          <span class="timeline-date">Aug. 2025 - Present</span>
+        </div>
+        <div class="timeline-body">
+          <p class="timeline-desc">
+            Led the design of the flight computer systems architecture for a low-orbit student satellite proposal (design settled onto, although nothing was built).
+          </p>
+          <ul class="timeline-bullets">
+            <li>Designed a high-reliability systems architecture utilizing a primary low-power microcontroller with internal FRAM to handle basic housekeeping.</li>
+            <li>Programmed the custom startup boot sequence where the low-power FRAM MCU handles system health, powers up the secondary high-performance STM32H series MCU, and loads its program directly in mask ROM mode from the FRAM.</li>
+            <li>Specified external hardware watchdog timers on all processors to guarantee autonomous recovery from space radiation-induced lockups.</li>
+            <li>Dedicated the high-performance secondary STM32H series MCU to execute complex guidance, navigation, control algorithms, and manage payload operations.</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Experience 3: Core Member, Rocketry Project -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-header">
+          <div class="timeline-title-group">
+            <h3 class="timeline-role">Core Member, Rocketry Project</h3>
+            <span class="timeline-org">Gagan Vedhi Space Tech Club, IIT Tirupati</span>
+          </div>
+          <span class="timeline-date">Feb. 2025 - May 2025</span>
+        </div>
+        <div class="timeline-body">
+          <p class="timeline-desc">
+            Assisted the core engineering team during the development of telemetry subsystems and payload recovery triggers.
+          </p>
+          <ul class="timeline-bullets">
+            <li>Authored the initial schematic layouts for flight telemetry transmitters using Arduino-based frameworks.</li>
+            <li>Assisted in building custom test environments, including physical sensor calibrations and RF range testing.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       04. TECHNICAL STACK (SKILLS)
+       ========================================================================== -->
+  <section id="skills" class="container">
+    <div class="section-header">
+      <h2 class="section-title">04. <span>TECHNICAL STACK</span></h2>
+      <div class="section-subtitle">Categorized Engineering Domains & Core Competencies</div>
+    </div>
+    
+    <div class="skills-grid">
+      <!-- Card 1: Processors -->
+      <div class="hud-panel skills-card-new">
+        <h3 class="skills-card-title"><i class="fa-solid fa-microchip"></i> PROCESSORS & CORES</h3>
+        <div class="skills-tags-container">
+          <span class="skill-chip"><i class="fa-solid fa-square-check"></i> Teensy 4.1 (ARM Cortex-M7)</span>
+          <span class="skill-chip"><i class="fa-solid fa-square-check"></i> STM32H Series (High-Perf)</span>
+          <span class="skill-chip"><i class="fa-solid fa-square-check"></i> nRF52 Series (Cortex-M4 SoC)</span>
+          <span class="skill-chip"><i class="fa-solid fa-square-check"></i> RP2040 Core Microcontroller</span>
+          <span class="skill-chip"><i class="fa-solid fa-square-check"></i> Arduino Mega 2560 (AVR)</span>
+          <span class="skill-chip"><i class="fa-solid fa-square-check"></i> ESP8266 Wi-Fi Module</span>
+          <span class="skill-chip"><i class="fa-solid fa-square-check"></i> Low-Power FRAM MCUs</span>
+        </div>
+      </div>
+      
+      <!-- Card 2: Hardware & Protocols -->
+      <div class="hud-panel skills-card-new">
+        <h3 class="skills-card-title"><i class="fa-solid fa-route"></i> HARDWARE & INTERFACES</h3>
+        <div class="skills-tags-container">
+          <span class="skill-chip"><i class="fa-solid fa-circle-check"></i> Custom PCB Layout (KiCad)</span>
+          <span class="skill-chip"><i class="fa-solid fa-circle-check"></i> Double-Sided FR4 Design</span>
+          <span class="skill-chip"><i class="fa-solid fa-circle-check"></i> RFM95W/RFM95PW Modular RF</span>
+          <span class="skill-chip"><i class="fa-solid fa-circle-check"></i> GSM Transceiver Slots</span>
+          <span class="skill-chip"><i class="fa-solid fa-circle-check"></i> QSPI Flash Logger Bus</span>
+          <span class="skill-chip"><i class="fa-solid fa-circle-check"></i> SPI, I2C, UART, Serial Bus</span>
+          <span class="skill-chip"><i class="fa-solid fa-circle-check"></i> Thermocouples (MAX31855)</span>
+          <span class="skill-chip"><i class="fa-solid fa-circle-check"></i> Load Cells & ADC Nodes</span>
+        </div>
+      </div>
+      
+      <!-- Card 3: Firmware & RTOS -->
+      <div class="hud-panel skills-card-new">
+        <h3 class="skills-card-title"><i class="fa-solid fa-code"></i> FIRMWARE & RTOS</h3>
+        <div class="skills-tags-container">
+          <span class="skill-chip"><i class="fa-solid fa-bolt"></i> FreeRTOS (Modular Bus)</span>
+          <span class="skill-chip"><i class="fa-solid fa-bolt"></i> Zephyr RTOS (BLE 5.0)</span>
+          <span class="skill-chip"><i class="fa-solid fa-bolt"></i> Bare-Metal C/C++ (PlatformIO)</span>
+          <span class="skill-chip"><i class="fa-solid fa-bolt"></i> Interrupt Service Routines (ISRs)</span>
+          <span class="skill-chip"><i class="fa-solid fa-bolt"></i> State Machine Logic Systems</span>
+          <span class="skill-chip"><i class="fa-solid fa-bolt"></i> Complementary Filter Fusion</span>
+          <span class="skill-chip"><i class="fa-solid fa-bolt"></i> Low-Latency Data Streaming</span>
+        </div>
+      </div>
+      
+      <!-- Card 4: Systems & Controls -->
+      <div class="hud-panel skills-card-new">
+        <h3 class="skills-card-title"><i class="fa-solid fa-sliders"></i> SYSTEMS & CONTROLS</h3>
+        <div class="skills-tags-container">
+          <span class="skill-chip"><i class="fa-solid fa-triangle-exclamation"></i> Cascaded PID Loops</span>
+          <span class="skill-chip"><i class="fa-solid fa-triangle-exclamation"></i> Inverted Pendulum Balancing</span>
+          <span class="skill-chip"><i class="fa-solid fa-triangle-exclamation"></i> DAQ & Calibration Systems</span>
+          <span class="skill-chip"><i class="fa-solid fa-triangle-exclamation"></i> Firing Safe-Arms (BJTs+MOSFETs)</span>
+          <span class="skill-chip"><i class="fa-solid fa-triangle-exclamation"></i> Hardware Watchdog Timers</span>
+          <span class="skill-chip"><i class="fa-solid fa-triangle-exclamation"></i> Failure Modes & Fail-Safes</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       05. COMMS CONSOLE (CONTACT)
+       ========================================================================== -->
+  <section id="contact" class="container">
+    <div class="section-header">
+      <h2 class="section-title">05. <span>SYSTEM COMMS</span></h2>
+      <div class="section-subtitle">Establish Direct Communication Connection Link</div>
+    </div>
+    
+    <div class="hud-panel contact-console" id="interactive-dos-terminal">
+      <div class="console-bar">
+        <div class="console-title"><i class="fa-solid fa-terminal"></i> Command Prompt - Interactive Shell</div>
+        <div class="console-btns">
+          <div class="console-btn red"></div>
+          <div class="console-btn yellow"></div>
+          <div class="console-btn green"></div>
+        </div>
+      </div>
+      
+      <div class="console-body" style="color: #CCCCCC;">
+        <!-- Scrollable Output History -->
+        <div id="dos-history" style="display: flex; flex-direction: column; gap: 0.5rem; max-height: 380px; overflow-y: auto;">
+          <div class="console-output-text" style="color: #8E9AA8;">
+            Microsoft Windows [Version 10.0.22631]<br>
+            (c) Microsoft Corporation. All rights reserved.<br><br>
+            [SYSTEM] Shell online. Interactive MS-DOS Command Interpreter active.<br>
+            [SYSTEM] Clicking anywhere inside this window focuses keyboard input.<br>
+            [SYSTEM] Type <span style="color: var(--color-cyan); font-weight: bold;">help</span> and press Enter to see available commands.<br>
+          </div>
+        </div>
+        
+        <!-- Live Input Row -->
+        <div class="console-input-row" style="margin-top: 0.5rem; display: flex; align-items: center;">
+          <span class="console-prompt" id="dos-prompt" style="margin-right: 0.5rem; font-weight: bold;">C:\Users&gt;</span>
+          <span style="position: relative; flex-grow: 1; display: flex; align-items: center;">
+            <span id="dos-typed-text" style="color: #FFF; font-weight: 500; min-height: 1rem; line-height: 1; white-space: pre-wrap;"></span>
+            <span class="cursor-blink" style="margin-left: 2px;"></span>
+            <input type="text" id="dos-hidden-input" autocomplete="off" aria-label="Terminal Prompt" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; opacity: 0; cursor: default; background: transparent; border: none; color: transparent; outline: none; font-size: inherit; font-family: inherit;">
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer>
+    <div class="footer-stats">
+      <div class="footer-stat-item">LATENCY: <span>1.8ms</span></div>
+      <div class="footer-stat-item">MEM_USAGE: <span>4.2%</span></div>
+      <div class="footer-stat-item">TELEMETRY_STREAM: <span>ONLINE</span></div>
+    </div>
+    <div>&copy; 2026 Gantla Venkata Sravan. Engineered for Aerospace Subsystems. All Rights Reserved.</div>
+  </footer>
+
+  <!-- Link JavaScript application -->
+  <script src="app.js"></script>
 </body>
 </html>
