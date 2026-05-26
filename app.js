@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const ctx = canvas.getContext('2d');
   
   let stars = [];
-  const maxStars = 80;
+  const maxStars = 85;
   
   function resizeStarfield() {
     canvas.width = window.innerWidth;
@@ -27,10 +27,10 @@ document.addEventListener('DOMContentLoaded', () => {
     stars.push({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      radius: Math.random() * 1.5 + 0.2,
-      color: Math.random() > 0.8 ? 'rgba(0, 240, 255, 0.8)' : Math.random() > 0.9 ? 'rgba(138, 43, 226, 0.8)' : 'rgba(255,255,255,0.7)',
-      speedX: (Math.random() * 0.15 - 0.075),
-      speedY: (Math.random() * 0.15 - 0.075)
+      radius: Math.random() * 1.6 + 0.2,
+      color: Math.random() > 0.85 ? 'rgba(6, 182, 212, 0.8)' : Math.random() > 0.92 ? 'rgba(124, 58, 237, 0.8)' : 'rgba(255,255,255,0.75)',
+      speedX: (Math.random() * 0.12 - 0.06),
+      speedY: (Math.random() * 0.12 - 0.06)
     });
   }
   
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
       clearInterval(cgpaInterval);
     }
     cgpaCounter.textContent = currentCGPA.toFixed(2);
-  }, 30);
+  }, 25);
 
   // ==========================================================================
   // INTERACTIVE PORTABLE DOS SHELL EMULATOR
@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const lineElement = document.createElement('div');
     lineElement.className = 'terminal-line-row';
     if (isGreenStyle) {
-      lineElement.style.color = '#39ff14';
+      lineElement.style.color = '#22c55e';
       lineElement.style.fontFamily = 'var(--font-mono)';
       lineElement.style.lineHeight = '1.35';
     } else {
@@ -140,12 +140,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     termHiddenInput.addEventListener('focus', () => {
-      termAnchor.style.borderColor = 'rgba(0, 240, 255, 0.45)';
-      termAnchor.style.boxShadow = '0 0 25px rgba(0, 240, 255, 0.15)';
+      termAnchor.style.borderColor = 'rgba(6, 182, 212, 0.45)';
+      termAnchor.style.boxShadow = '0 0 25px rgba(6, 182, 212, 0.15)';
     });
     
     termHiddenInput.addEventListener('blur', () => {
-      termAnchor.style.borderColor = 'rgba(0, 240, 255, 0.12)';
+      termAnchor.style.borderColor = 'rgba(6, 182, 212, 0.12)';
       termAnchor.style.boxShadow = 'none';
     });
     
@@ -198,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
       case 'whoami':
         printTerminalLine(`Gantla Venkata Sravan - B.Tech Electrical Engineering at IIT Tirupati.<br>
-Systems & Embedded Systems Engineer | Avionics Division Lead.`);
+Systems & Embedded Systems Engineer | Gagan Vedhi Space Tech Club.`);
         break;
         
       case 'contact':
