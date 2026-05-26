@@ -1,5 +1,5 @@
 /* ==========================================================================
-   COSMIC ORBITAL CONTROL DECK - SYSTEM ENGINE
+   SYSTEM CONTROL DECK - ENGINE INTERACTION
    Author: Gantla Venkata Sravan
    ========================================================================== */
 
@@ -22,15 +22,15 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('resize', resizeStarfield);
   resizeStarfield();
   
-  // Populate initial stars
+  // Populate initial stars - strictly Red, Yellow, and White
   for (let i = 0; i < maxStars; i++) {
     stars.push({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      radius: Math.random() * 1.6 + 0.2,
-      color: Math.random() > 0.85 ? 'rgba(6, 182, 212, 0.8)' : Math.random() > 0.92 ? 'rgba(124, 58, 237, 0.8)' : 'rgba(255,255,255,0.75)',
-      speedX: (Math.random() * 0.12 - 0.06),
-      speedY: (Math.random() * 0.12 - 0.06)
+      radius: Math.random() * 1.5 + 0.2,
+      color: Math.random() > 0.85 ? 'rgba(255, 51, 85, 0.75)' : Math.random() > 0.92 ? 'rgba(255, 183, 0, 0.75)' : 'rgba(255, 255, 255, 0.75)',
+      speedX: (Math.random() * 0.1 - 0.05),
+      speedY: (Math.random() * 0.1 - 0.05)
     });
   }
   
@@ -58,23 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   animateStars();
-
-  // ==========================================================================
-  // MISSION ELAPSED HUD CLOCK
-  // ==========================================================================
-  const missionClock = document.getElementById('mission-clock-hud');
-  const sessionStartTime = Date.now();
-  
-  function updateMissionClock() {
-    const deltaMs = Date.now() - sessionStartTime;
-    const deltaSeconds = Math.floor(deltaMs / 1000);
-    
-    const minutes = String(Math.floor((deltaSeconds % 3600) / 60)).padStart(2, '0');
-    const seconds = String(deltaSeconds % 60).padStart(2, '0');
-    
-    missionClock.textContent = `T+00:${minutes}:${seconds}`;
-  }
-  setInterval(updateMissionClock, 1000);
 
   // ==========================================================================
   // DYNAMIC COUNTER METRICS ANIMATION (CGPA)
@@ -115,11 +98,11 @@ document.addEventListener('DOMContentLoaded', () => {
     return text.replace(/[&<>"']/g, m => escapeMap[m]);
   }
   
-  function printTerminalLine(content, isGreenStyle = false) {
+  function printTerminalLine(content, isColorStyle = false) {
     const lineElement = document.createElement('div');
     lineElement.className = 'terminal-line-row';
-    if (isGreenStyle) {
-      lineElement.style.color = '#22c55e';
+    if (isColorStyle) {
+      lineElement.style.color = '#ffb700'; // Warm yellow output matching theme
       lineElement.style.fontFamily = 'var(--font-mono)';
       lineElement.style.lineHeight = '1.35';
     } else {
@@ -140,12 +123,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     termHiddenInput.addEventListener('focus', () => {
-      termAnchor.style.borderColor = 'rgba(6, 182, 212, 0.45)';
-      termAnchor.style.boxShadow = '0 0 25px rgba(6, 182, 212, 0.15)';
+      termAnchor.style.borderColor = 'rgba(255, 51, 85, 0.45)';
+      termAnchor.style.boxShadow = '0 0 25px rgba(255, 51, 85, 0.15)';
     });
     
     termHiddenInput.addEventListener('blur', () => {
-      termAnchor.style.borderColor = 'rgba(6, 182, 212, 0.12)';
+      termAnchor.style.borderColor = 'rgba(255, 51, 85, 0.15)';
       termAnchor.style.boxShadow = 'none';
     });
     
@@ -182,13 +165,13 @@ document.addEventListener('DOMContentLoaded', () => {
     switch (cmdName) {
       case 'help':
         printTerminalLine(`Active Terminal Commands:<br>
-<span style="color: var(--accent-cyan); font-weight: bold;">HELP</span>         - Display terminal commands list.<br>
-<span style="color: var(--accent-cyan); font-weight: bold;">DIR</span>          - List directory subfolders & files.<br>
-<span style="color: var(--accent-cyan); font-weight: bold;">CD [directory]</span>- Change prompt folder (e.g. 'cd /', 'cd WHO_AM_I', 'cd ..')<br>
-<span style="color: var(--accent-cyan); font-weight: bold;">IDENT.BAT</span>    - Run holographic signature profile (in C:\\WHO_AM_I folder).<br>
-<span style="color: var(--accent-cyan); font-weight: bold;">WHOAMI</span>       - Print technical engineer overview.<br>
-<span style="color: var(--accent-cyan); font-weight: bold;">CONTACT</span>      - Print direct contact credentials.<br>
-<span style="color: var(--accent-cyan); font-weight: bold;">CLS</span> / <span style="color: var(--accent-cyan); font-weight: bold;">CLEAR</span>  - Clear scrolling terminal buffer.`);
+<span style="color: var(--accent-yellow); font-weight: bold;">HELP</span>         - Display terminal commands list.<br>
+<span style="color: var(--accent-yellow); font-weight: bold;">DIR</span>          - List directory subfolders & files.<br>
+<span style="color: var(--accent-yellow); font-weight: bold;">CD [directory]</span>- Change prompt folder (e.g. 'cd /', 'cd WHO_AM_I', 'cd ..')<br>
+<span style="color: var(--accent-yellow); font-weight: bold;">IDENT.BAT</span>    - Run developer signature profile (in C:\\WHO_AM_I folder).<br>
+<span style="color: var(--accent-yellow); font-weight: bold;">WHOAMI</span>       - Print technical engineer overview.<br>
+<span style="color: var(--accent-yellow); font-weight: bold;">CONTACT</span>      - Print direct contact credentials.<br>
+<span style="color: var(--accent-yellow); font-weight: bold;">CLS</span> / <span style="color: var(--accent-yellow); font-weight: bold;">CLEAR</span>  - Clear scrolling terminal buffer.`);
         break;
         
       case 'cls':
@@ -197,15 +180,15 @@ document.addEventListener('DOMContentLoaded', () => {
         break;
         
       case 'whoami':
-        printTerminalLine(`Gantla Venkata Sravan - B.Tech Electrical Engineering at IIT Tirupati.<br>
-Systems & Embedded Systems Engineer | Gagan Vedhi Space Tech Club.`);
+        printTerminalLine(`Gantla Venkata Sravan - B.Tech Electrical Engineering student at IIT Tirupati.<br>
+Systems & Embedded Systems Engineer | Future AI Trajectory Focus.`);
         break;
         
       case 'contact':
-        printTerminalLine(`* PHONE    : <a href="tel:6305659884" style="color: var(--accent-cyan);">+91 6305659884</a><br>
-* EMAIL    : <a href="mailto:gvsravan007@gmail.com" style="color: var(--accent-cyan);">gvsravan007@gmail.com</a><br>
-* GITHUB   : <a href="https://github.com/sravangantla007" target="_blank" style="color: var(--accent-cyan);">github.com/sravangantla007</a><br>
-* LINKEDIN : <a href="https://www.linkedin.com/in/venkata-sravan-gantla-323144236/" target="_blank" style="color: var(--accent-cyan);">LinkedIn Profile</a>`);
+        printTerminalLine(`* PHONE    : <a href="tel:6305659884" style="color: var(--accent-yellow);">+91 6305659884</a><br>
+* EMAIL    : <a href="mailto:gvsravan007@gmail.com" style="color: var(--accent-yellow);">gvsravan007@gmail.com</a><br>
+* GITHUB   : <a href="https://github.com/sravangantla007" target="_blank" style="color: var(--accent-yellow);">github.com/sravangantla007</a><br>
+* LINKEDIN : <a href="https://www.linkedin.com/in/venkata-sravan-gantla-323144236/" target="_blank" style="color: var(--accent-yellow);">LinkedIn Profile</a>`);
         break;
         
       case 'dir':
@@ -284,16 +267,16 @@ Status      : Active<br>
 =============================`, true);
         
         setTimeout(() => {
-          printTerminalLine(`* PHONE: <a href="tel:6305659884" style="color: var(--accent-cyan);">+91 6305659884</a><br>
-* EMAIL: <a href="mailto:gvsravan007@gmail.com" style="color: var(--accent-cyan);">gvsravan007@gmail.com</a><br>
-* GITHUB: <a href="https://github.com/sravangantla007" target="_blank" style="color: var(--accent-cyan);">github.com/sravangantla007</a><br>
-* LINKEDIN: <a href="https://www.linkedin.com/in/venkata-sravan-gantla-323144236/" target="_blank" style="color: var(--accent-cyan);">LinkedIn Profile</a>`);
+          printTerminalLine(`* PHONE: <a href="tel:6305659884" style="color: var(--accent-yellow);">+91 6305659884</a><br>
+* EMAIL: <a href="mailto:gvsravan007@gmail.com" style="color: var(--accent-yellow);">gvsravan007@gmail.com</a><br>
+* GITHUB: <a href="https://github.com/sravangantla007" target="_blank" style="color: var(--accent-yellow);">github.com/sravangantla007</a><br>
+* LINKEDIN: <a href="https://www.linkedin.com/in/venkata-sravan-gantla-323144236/" target="_blank" style="color: var(--accent-yellow);">LinkedIn Profile</a>`);
         }, 350);
         break;
         
       default:
         printTerminalLine(`'${escapeHtmlChars(cmdName)}' is not recognized as an internal or external command,<br>
-operable program or batch file. Type <span style="color: var(--accent-cyan); font-weight: bold;">help</span> for active commands.`);
+operable program or batch file. Type <span style="color: var(--accent-yellow); font-weight: bold;">help</span> for active commands.`);
     }
   }
 
