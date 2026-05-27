@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const termHiddenInput = document.getElementById('terminal-hidden-input-field');
   const termHistoryList = document.getElementById('terminal-history-list');
   
-  let termCurrentDir = 'C:\\Users';
+  let termCurrentDir = 'C:\\SRAVAN';
   
   function escapeHtmlChars(text) {
     const escapeMap = {
@@ -192,25 +192,24 @@ Systems & Embedded Systems Engineer | Future AI Trajectory Focus.`);
         break;
         
       case 'dir':
-        if (termCurrentDir === 'C:\\Users') {
-          printTerminalLine(` Directory of C:\\Users<br><br>
-2026-05-26  11:12 PM    &lt;DIR&gt;          .<br>
-2026-05-26  11:12 PM    &lt;DIR&gt;          ..<br>
-2026-05-26  11:12 PM    &lt;DIR&gt;          sravan<br>
-               0 File(s)              0 bytes<br>
-               3 Dir(s)  512,118,784,000 bytes free`);
+        if (termCurrentDir === 'C:\\SRAVAN') {
+          printTerminalLine(` Directory of C:\\SRAVAN<br><br>
+2026-05-27  11:20 AM    &lt;DIR&gt;          .<br>
+2026-05-27  11:20 AM    &lt;DIR&gt;          ..<br>
+               0 File(s)              0 bytes
+               2 Dir(s)  512,118,784,000 bytes free`);
         } else if (termCurrentDir === 'C:\\') {
           printTerminalLine(` Directory of C:\\<br><br>
-2026-05-26  11:12 PM    &lt;DIR&gt;          Users<br>
-2026-05-26  11:12 PM    &lt;DIR&gt;          WHO_AM_I<br>
-               0 File(s)              0 bytes<br>
+2026-05-27  11:20 AM    &lt;DIR&gt;          SRAVAN<br>
+2026-05-27  11:20 AM    &lt;DIR&gt;          WHO_AM_I<br>
+               0 File(s)              0 bytes
                2 Dir(s)  512,118,784,000 bytes free`);
         } else if (termCurrentDir === 'C:\\WHO_AM_I') {
           printTerminalLine(` Directory of C:\\WHO_AM_I<br><br>
-2026-05-26  11:12 PM    &lt;DIR&gt;          .<br>
-2026-05-26  11:12 PM    &lt;DIR&gt;          ..<br>
-2026-05-26  11:12 PM               438 ident.bat<br>
-               1 File(s)            438 bytes<br>
+2026-05-27  11:20 AM    &lt;DIR&gt;          .<br>
+2026-05-27  11:20 AM    &lt;DIR&gt;          ..<br>
+2026-05-27  11:20 AM               438 IDENT.BAT<br>
+               1 File(s)            438 bytes
                2 Dir(s)  512,118,784,000 bytes free`);
         }
         break;
@@ -227,22 +226,16 @@ Systems & Embedded Systems Engineer | Future AI Trajectory Focus.`);
           termCurrentDir = 'C:\\';
           termPrompt.textContent = 'C:\\>';
         } else if (targetDirClean === '..' || targetDirClean === 'cd..') {
-          if (termCurrentDir === 'C:\\WHO_AM_I' || termCurrentDir === 'C:\\Users') {
+          if (termCurrentDir === 'C:\\WHO_AM_I' || termCurrentDir === 'C:\\SRAVAN') {
             termCurrentDir = 'C:\\';
             termPrompt.textContent = 'C:\\>';
           }
         } else if (targetDirClean === 'who_am_i' || targetDirClean === '\\who_am_i' || targetDirClean === 'c:\\who_am_i' || targetDirClean === 'who_am_i\\') {
           termCurrentDir = 'C:\\WHO_AM_I';
           termPrompt.textContent = 'C:\\WHO_AM_I>';
-        } else if (targetDirClean === 'users' || targetDirClean === '\\users' || targetDirClean === 'c:\\users' || targetDirClean === 'users\\') {
-          termCurrentDir = 'C:\\Users';
-          termPrompt.textContent = 'C:\\Users>';
-        } else if (targetDirClean === 'sravan' || targetDirClean === 'users\\sravan' || targetDirClean === '\\users\\sravan' || targetDirClean === 'c:\\users\\sravan') {
-          if (termCurrentDir === 'C:\\Users' || targetDirClean.includes('users')) {
-            printTerminalLine('Access Denied: encrypted system sector.');
-          } else {
-            printTerminalLine('The system cannot find the path specified.');
-          }
+        } else if (targetDirClean === 'sravan' || targetDirClean === '\\sravan' || targetDirClean === 'c:\\sravan' || targetDirClean === 'sravan\\') {
+          termCurrentDir = 'C:\\SRAVAN';
+          termPrompt.textContent = 'C:\\SRAVAN>';
         } else {
           printTerminalLine('The system cannot find the path specified.');
         }

@@ -28,11 +28,11 @@
     </a>
     
     <div class="nav-links">
-      <a href="#mission" class="nav-link active">01. PROJECTS</a>
-      <a href="#projects" class="nav-link">02. SYSTEMS</a>
-      <a href="#chronology" class="nav-link">03. EXPERIENCE</a>
-      <a href="#skills" class="nav-link">04. SKILLS</a>
-      <a href="#comms" class="nav-link">05. TERMINAL</a>
+      <a href="#mission" class="nav-link active"><i class="fa-solid fa-rocket nav-mobile-icon"></i> <span>01. PROJECTS</span></a>
+      <a href="#projects" class="nav-link"><i class="fa-solid fa-gears nav-mobile-icon"></i> <span>02. SYSTEMS</span></a>
+      <a href="#chronology" class="nav-link"><i class="fa-solid fa-timeline nav-mobile-icon"></i> <span>03. EXPERIENCE</span></a>
+      <a href="#skills" class="nav-link"><i class="fa-solid fa-check-double nav-mobile-icon"></i> <span>04. SKILLS</span></a>
+      <a href="#comms" class="nav-link"><i class="fa-solid fa-terminal nav-mobile-icon"></i> <span>05. TERMINAL</span></a>
     </div>
     
     <div class="nav-meta">
@@ -71,7 +71,7 @@
 
         <p class="hero-desc">
           B.Tech Electrical Engineering student at <strong>IIT Tirupati</strong>. 
-          Specialized in high-reliability embedded platforms, custom multi-layer PCB design, bare-metal registers, and real-time operating systems (RTOS) - with a vision aimed directly at the future of cognitive systems and artificial intelligence.
+          Specialized in high-reliability embedded platforms, custom multi-layer PCB design, bare-metal registers, and real-time operating systems (RTOS) - with a vision focused on bridging the gap between low-level hardware and cognitive AI systems.
         </p>
         
         <div class="hero-specs-hud">
@@ -84,8 +84,8 @@
             <div class="spec-hud-lbl">VelR Rocketry Club</div>
           </div>
           <div class="spec-hud-item">
-            <div class="spec-hud-val">Teensy / STM32</div>
-            <div class="spec-hud-lbl">Processor Focus</div>
+            <div class="spec-hud-val custom-mcu-hud-val">nRF, ESP, STM32, RP2040</div>
+            <div class="spec-hud-lbl">Bare-Metal & RTOS MCU Platforms</div>
           </div>
         </div>
       </div>
@@ -124,7 +124,7 @@
         </div>
       </div>
 
-      <!-- Card B: BB-8 Battle Droids (3D Android Game Showcase) -->
+      <!-- Card B: BB-8 Astromech (3D Android Game Showcase) -->
       <div class="hud-panel launch-card bb8-droid">
         <div class="card-banner-img">
           <div class="bb8-grid-decor">
@@ -133,7 +133,7 @@
         </div>
         <div class="card-launch-content">
           <span class="launch-site-tag"><i class="fa-solid fa-gamepad"></i> Mobile Game Development</span>
-          <h3 class="launch-site-title">Star Wars Battle Droid</h3>
+          <h3 class="launch-site-title">Star Wars BB-8 Astromech</h3>
           <p class="launch-site-desc">
             A high-performance Unity-powered 3D mobile game developed on Android. Highlights custom Blender assets, event-driven C# rigidbodies physics, and mobile draw-call reduction.
           </p>
@@ -164,7 +164,7 @@
           <i class="fa-solid fa-microchip" style="color: var(--accent-red);"></i> Modular Flight Avionics v2
         </h3>
         <p class="text-muted" style="font-size: 0.9rem; margin-bottom: 1.5rem;">
-          Designed and routed a modular flight computer utilizing a 32-bit **Teensy 4.1** core. Integrates barometric apogee indicators, high-speed SPI logging, double-sided PCB layout safety tracks, and pyrotechnic deployment circuits driven by FreeRTOS scheduler blocks.
+          Designed and routed a modular flight computer utilizing a 32-bit <strong>Teensy 4.1</strong> core. Integrates barometric apogee indicators, high-speed SPI logging, double-sided PCB layout safety tracks, and pyrotechnic deployment circuits driven by FreeRTOS scheduler blocks.
         </p>
         <div class="skills-tags-grid">
           <span class="skill-tag-chip"><i class="fa-solid fa-code"></i> Teensy 4.1</span>
@@ -180,7 +180,7 @@
           <i class="fa-solid fa-computer" style="color: var(--accent-yellow);"></i> Wi-Fi Custom DAQ & Firing Unit
         </h3>
         <p class="text-muted" style="font-size: 0.9rem; margin-bottom: 1.5rem;">
-          Engineered custom high-speed data acquisition boards for solid propellant static fire setups. Telemetry is streamed wirelessly at **10 Hz** via an **ESP8266** serial bridge, utilizing transistor-driven MOSFET relays to enforce strict hardware safe-arm steps.
+          Engineered custom high-speed data acquisition boards for solid propellant static fire setups. Telemetry is streamed wirelessly at <strong>10 Hz</strong> via an <strong>ESP8266</strong> serial bridge, utilizing transistor-driven MOSFET relays to enforce strict hardware safe-arm steps.
         </p>
         <div class="skills-tags-grid">
           <span class="skill-tag-chip"><i class="fa-solid fa-code"></i> Mega 2560</span>
@@ -196,7 +196,7 @@
           <i class="fa-solid fa-sliders" style="color: var(--accent-red);"></i> CHOTU Self-Balancing Robot
         </h3>
         <p class="text-muted" style="font-size: 0.9rem; margin-bottom: 1.5rem;">
-          A two-wheeled inverted pendulum robot built on the Shrike Lite RP2040 dev board. Implemented cascaded PID controller blocks in MicroPython, fusing IMU registers to compute pitch angles. Upgraded with real-time Wi-Fi telemetry and remote calibration loops.
+          A two-wheeled inverted pendulum robot built on the <strong>Shrike Lite RP2040</strong> dev board. Implemented cascaded <strong>PID controller</strong> loops in <strong>MicroPython</strong>, fusing IMU registers to compute pitch angles. Upgraded with real-time Wi-Fi telemetry and remote calibration loops.
         </p>
         <div class="skills-tags-grid">
           <span class="skill-tag-chip"><i class="fa-solid fa-code"></i> MicroPython</span>
@@ -212,7 +212,7 @@
           <i class="fa-solid fa-heart-pulse" style="color: var(--accent-yellow);"></i> nRF52 Health Wearable POC
         </h3>
         <p class="text-muted" style="font-size: 0.9rem; margin-bottom: 1.5rem;">
-          Developed firmware blocks on an **nRF52 SoC** utilizing the **Zephyr RTOS** framework. Configured hardware interrupts to pull vital biometric sensor data and broadcast frames using Bluetooth Low Energy (BLE) peripheral notification channels.
+          Developed firmware blocks on an <strong>nRF52 SoC</strong> utilizing the <strong>Zephyr RTOS</strong> framework. Configured hardware interrupts to pull vital biometric sensor data and broadcast frames using Bluetooth Low Energy (BLE) peripheral notification channels.
         </p>
         <div class="skills-tags-grid">
           <span class="skill-tag-chip"><i class="fa-solid fa-microchip"></i> nRF52 series</span>
@@ -228,7 +228,7 @@
           <i class="fa-solid fa-terminal" style="color: var(--accent-red);"></i> STM32 Custom Bare-Metal Libraries
         </h3>
         <p class="text-muted" style="font-size: 0.9rem; margin-bottom: 1.5rem;">
-          Wrote a robust custom hardware abstraction library from scratch in bare C for **STM32** cores. Directly configured system clock trees (PLL/HSE), GPIO registers, hardware watchdog timers, and hardware timers without relying on vendor HAL tools.
+          Wrote a robust custom hardware abstraction library from scratch in bare C for <strong>STM32</strong> cores. Directly configured system clock trees (PLL/HSE), GPIO registers, hardware watchdog timers, and hardware timers without relying on vendor HAL tools.
         </p>
         <div class="skills-tags-grid">
           <span class="skill-tag-chip"><i class="fa-solid fa-code"></i> Bare-metal C</span>
@@ -244,7 +244,7 @@
           <i class="fa-solid fa-keyboard" style="color: var(--accent-yellow);"></i> STM32 USB-HID Device Emulator
         </h3>
         <p class="text-muted" style="font-size: 0.9rem; margin-bottom: 1.5rem;">
-          Implemented custom firmware mapping a physical STM32 chip to enumerate as a hardware keyboard/mouse on a host PC. Conducted study of USB specifications, descriptors, setup packets, and standard HID report descriptors.
+          Implemented custom firmware mapping a physical <strong>STM32 chip</strong> to enumerate as a hardware <strong>USB-HID</strong> keyboard/mouse on a host PC. Conducted study of USB specifications, descriptors, setup packets, and standard HID report descriptors.
         </p>
         <div class="skills-tags-grid">
           <span class="skill-tag-chip"><i class="fa-solid fa-usb"></i> USB 2.0 Spec</span>
@@ -303,7 +303,7 @@
             Co-engineered processing models and watchdog routines for satellite telemetry structures.
           </p>
           <ul class="chrono-bullets">
-            <li>Designed redundant multi-processor structures pairing a low-power house-keeping core (with internal FRAM) to manage power grids, watchdogs, and boot loops.</li>
+            <li>Designed redundant multi-processor structures pairing a low-power housekeeping core (with internal FRAM) to manage power grids, watchdogs, and boot loops.</li>
             <li>Drafted high-performance processing sequence that wakes secondary STM32 cores to handle telemetry guidance loops and sensors.</li>
             <li>Designed system fail-safes employing external hardware watchdog gates to auto-recover cores from radiation lockups.</li>
           </ul>
@@ -456,7 +456,7 @@
         
         <!-- Command input row -->
         <div class="term-typed-cmd-line">
-          <span class="term-prompt-marker" id="terminal-prompt-node">C:\Users&gt;</span>
+          <span class="term-prompt-marker" id="terminal-prompt-node">C:\SRAVAN&gt;</span>
           <div class="term-input-field-container">
             <span id="terminal-visible-typed-text" style="color: #ffffff; white-space: pre-wrap; font-weight: bold;"></span>
             <span class="term-caret-blink"></span>

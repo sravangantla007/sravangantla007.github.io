@@ -229,6 +229,10 @@ h1, h2, h3, h4 {
   width: 100%;
 }
 
+.nav-mobile-icon {
+  display: none;
+}
+
 .nav-meta {
   display: flex;
   align-items: center;
@@ -881,41 +885,316 @@ footer {
   font-weight: bold;
 }
 
-/* Responsive scaling overrides */
-@media (max-width: 900px) {
+/* ==========================================================================
+   RESPONSIVE DESIGN SYSTEM
+   Widescreen Desktop layout remains perfectly intact ("as is").
+   A dedicated high-fidelity Mobile HUD layout triggers under 768px.
+   ========================================================================== */
+
+/* Medium screen adjustments (between 769px and 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
   .hero-grid {
-    grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2rem;
   }
-  .hero-profile-container {
+  .hero-title {
+    font-size: 3rem;
+  }
+  .launchpad-grid, .projects-deck-grid, .skills-grid {
+    gap: 1.5rem;
+  }
+}
+
+/* Dedicated, high-contrast Mobile layout */
+@media (max-width: 768px) {
+  body {
+    padding-top: 20px;
+    padding-bottom: 85px; /* Leave space for bottom floating flight deck menu */
+    background-size: 100% 100%, 30px 30px, 30px 30px;
+  }
+
+  .container {
+    padding: 2.5rem 0;
+    width: 92%;
+  }
+
+  /* 1. BOTTOM FLOATING FLIGHT DECK MENU */
+  .cosmic-nav {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 65px;
+    background: rgba(3, 3, 5, 0.96);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 51, 85, 0.3);
+    border-bottom: none;
+    padding: 0 0.5rem;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.95);
+    z-index: 1000;
+  }
+
+  .nav-brand {
+    display: none; /* Hide brand from navigation to save screen area */
+  }
+
+  .nav-links {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    gap: 0;
+  }
+
+  .nav-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-  }
-  .portrait-frame {
-    max-width: 260px;
-  }
-  .hero-content {
+    font-size: 0.65rem;
+    color: #64748b;
+    padding: 0.35rem 0;
+    flex-grow: 1;
     text-align: center;
+    transition: all 0.2s ease;
   }
+
+  .nav-link span {
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-top: 0.2rem;
+  }
+
+  .nav-mobile-icon {
+    display: block;
+    font-size: 1.15rem;
+    transition: transform 0.2s ease;
+  }
+
+  .nav-link:hover .nav-mobile-icon, .nav-link.active .nav-mobile-icon {
+    transform: translateY(-2px);
+    color: var(--accent-red);
+    text-shadow: 0 0 10px var(--accent-red-glow);
+  }
+
+  .nav-link::after {
+    display: none; /* Hide desktop underlines on mobile bottom menu */
+  }
+
+  /* Active state glows bottom border or icon */
+  .nav-link.active {
+    color: var(--accent-red);
+  }
+
+  .nav-link.active span {
+    color: #ffffff;
+  }
+
+  /* 2. HERO VERTICAL COLUMN STACK */
+  .hero-deck {
+    min-height: auto;
+    padding: 2rem 0;
+  }
+
+  .hero-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    align-items: center;
+    text-align: left;
+  }
+
+  .hero-profile-container {
+    width: 100%;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .portrait-frame {
+    max-width: 240px;
+    width: 90%;
+    border-radius: 16px;
+    padding: 6px;
+  }
+
+  .portrait-quote {
+    font-size: 0.85rem;
+    margin-top: 0.4rem;
+  }
+
+  .hero-content {
+    width: 100%;
+    gap: 1rem;
+  }
+
+  .hero-pretitle {
+    font-size: 0.8rem;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+    line-height: 1.15;
+  }
+
+  .hero-subtitle {
+    font-size: 1.15rem;
+  }
+
+  .hero-desc {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: #cbd5e1;
+  }
+
+  /* 3. MOBILE SYSTEM SPEC HUD CARDS */
   .hero-specs-hud {
-    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    width: 100%;
+    margin-top: 1.2rem;
   }
+
   .spec-hud-item {
-    border-left: none;
-    border-top: 1px solid var(--accent-red);
-    padding-left: 0;
-    padding-top: 0.5rem;
+    border-left: 3px solid var(--accent-red);
+    border-top: none;
+    padding: 0.65rem 1rem;
+    background: rgba(255, 51, 85, 0.03);
+    border-radius: 0 var(--radius-cosmic) var(--radius-cosmic) 0;
+    box-shadow: inset 4px 0 10px rgba(0, 0, 0, 0.25);
   }
+
+  /* High contrast highlight for the MCU platform list */
+  .spec-hud-item:last-child {
+    border-left-color: var(--accent-yellow);
+    background: rgba(255, 183, 0, 0.02);
+  }
+
+  .spec-hud-val {
+    font-size: 1.25rem;
+  }
+  
+  .custom-mcu-hud-val {
+    font-size: 1.05rem !important;
+  }
+
+  .spec-hud-lbl {
+    font-size: 0.7rem;
+    margin-top: 0.15rem;
+  }
+
+  /* 4. SHOWCASE SITES SINGLE-COLUMN GRID */
+  .section-meta-hdr {
+    margin-bottom: 2rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .section-tagline {
+    font-size: 1.65rem;
+  }
+
   .launchpad-grid {
     grid-template-columns: 1fr;
+    gap: 1.8rem;
   }
+
+  .card-banner-img {
+    height: 130px;
+  }
+
+  .telemetry-sweep-decor {
+    font-size: 2.8rem;
+  }
+
+  .starwars-glyph-decor {
+    font-size: 3rem;
+  }
+
+  .card-launch-content {
+    padding: 1.2rem;
+  }
+
+  .launch-site-title {
+    font-size: 1.3rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .launch-site-desc {
+    font-size: 0.88rem;
+    min-height: auto;
+    margin-bottom: 1.5rem;
+  }
+
+  /* 5. CORE SYSTEMS PROJECTS SINGLE-COLUMN GRID */
   .projects-deck-grid {
     grid-template-columns: 1fr;
+    gap: 1.2rem;
   }
-  .skills-grid {
-    grid-template-columns: 1fr;
+
+  .proj-deck-card {
+    padding: 1.4rem;
   }
+
+  .proj-deck-title {
+    font-size: 1.15rem;
+  }
+
+  /* 6. RESPONSIVE EXPERIENCE TIMELINE */
+  .chronology-grid {
+    margin-left: 0.5rem;
+    padding-left: 1.4rem;
+  }
+
+  .chrono-dot {
+    left: calc(-1.4rem - 7px);
+  }
+
   .chrono-header {
     flex-direction: column;
-    gap: 0.5rem;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+
+  .chrono-title-group h3 {
+    font-size: 1.15rem;
+  }
+
+  .chrono-date {
+    font-size: 0.72rem;
+    padding: 0.15rem 0.5rem;
+  }
+
+  .chrono-body {
+    font-size: 0.88rem;
+  }
+
+  /* 7. TECHNICAL SKILLS SINGLE-COLUMN GRID */
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  .skills-card {
+    padding: 1.4rem;
+  }
+
+  .skills-card-title {
+    font-size: 1.05rem;
+    margin-bottom: 1.2rem;
+  }
+
+  /* 8. MS-DOS CONSOLE WINDOW */
+  .console-body-section {
+    height: 320px;
+    padding: 1rem;
+    font-size: 0.8rem;
+  }
+
+  .terminal-line-row {
+    font-size: 0.8rem;
   }
 }
