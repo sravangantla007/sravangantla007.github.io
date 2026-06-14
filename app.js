@@ -60,20 +60,22 @@ document.addEventListener('DOMContentLoaded', () => {
   animateStars();
 
   // ==========================================================================
-  // DYNAMIC COUNTER METRICS ANIMATION (CGPA)
+  // DYNAMIC LIFE CLOCK (TIME SINCE BIRTH IN SECONDS)
   // ==========================================================================
-  const cgpaCounter = document.getElementById('cgpa-count');
-  const targetCGPA = 8.29;
-  let currentCGPA = 0;
-  
-  const cgpaInterval = setInterval(() => {
-    currentCGPA += 0.15;
-    if (currentCGPA >= targetCGPA) {
-      currentCGPA = targetCGPA;
-      clearInterval(cgpaInterval);
+  const lifeClockVal = document.getElementById('life-clock-val');
+  const BIRTH_TIMESTAMP = 1152772200; // TOB Unix timestamp
+
+  function updateLifeClock() {
+    if (lifeClockVal) {
+      const currentTimestamp = Math.floor(Date.now() / 1000);
+      const elapsedSeconds = currentTimestamp - BIRTH_TIMESTAMP;
+      lifeClockVal.textContent = elapsedSeconds.toLocaleString(); // formatted with commas or standard numbering
     }
-    cgpaCounter.textContent = currentCGPA.toFixed(2);
-  }, 25);
+  }
+
+  // Update immediately and then every second
+  updateLifeClock();
+  setInterval(updateLifeClock, 1000);
 
   // ==========================================================================
   // INTERACTIVE PORTABLE DOS SHELL EMULATOR
@@ -137,8 +139,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const rawString = termHiddenInput.value;
         const trimmedStr = rawString.trim();
         const splitParts = trimmedStr.split(/\s+/);
-        const inputCommandName = splitParts[0].toLowerCase();
+        let inputCommandName = splitParts[0].toLowerCase();
         const commandArg = splitParts.slice(1).join(' ');
+        
+        // Handle Unix-style local file execution `./` prefix
+        if (inputCommandName.startsWith('./')) {
+          inputCommandName = inputCommandName.substring(2);
+        }
         
         // Print executed command row
         const executedRow = document.createElement('div');
@@ -166,9 +173,11 @@ document.addEventListener('DOMContentLoaded', () => {
       case 'help':
         printTerminalLine(`Active Terminal Commands:<br>
 <span style="color: var(--accent-yellow); font-weight: bold;">HELP</span>         - Display terminal commands list.<br>
-<span style="color: var(--accent-yellow); font-weight: bold;">DIR</span>          - List directory subfolders & files.<br>
+<span style="color: var(--accent-yellow); font-weight: bold;">DIR</span> / <span style="color: var(--accent-yellow); font-weight: bold;">LS</span>     - List directory subfolders & files.<br>
 <span style="color: var(--accent-yellow); font-weight: bold;">CD [directory]</span>- Change prompt folder (e.g. 'cd /', 'cd WHO_AM_I', 'cd ..')<br>
+<span style="color: var(--accent-yellow); font-weight: bold;">CAT</span> / <span style="color: var(--accent-yellow); font-weight: bold;">TYPE [file]</span> - View content of text/batch files, or launch PDF documents.<br>
 <span style="color: var(--accent-yellow); font-weight: bold;">IDENT.BAT</span>    - Run developer signature profile (in C:\\WHO_AM_I folder).<br>
+<span style="color: var(--accent-yellow); font-weight: bold;">RESUME</span>       - Open curriculum vitae document (RESUME.PDF).<br>
 <span style="color: var(--accent-yellow); font-weight: bold;">WHOAMI</span>       - Print technical engineer overview.<br>
 <span style="color: var(--accent-yellow); font-weight: bold;">CONTACT</span>      - Print direct contact credentials.<br>
 <span style="color: var(--accent-yellow); font-weight: bold;">CLS</span> / <span style="color: var(--accent-yellow); font-weight: bold;">CLEAR</span>  - Clear scrolling terminal buffer.`);
@@ -191,24 +200,26 @@ Systems & Embedded Systems Engineer | Future AI Trajectory Focus.`);
 * LINKEDIN : <a href="https://www.linkedin.com/in/venkata-sravan-gantla-323144236/" target="_blank" style="color: var(--accent-yellow);">LinkedIn Profile</a>`);
         break;
         
+      case 'ls':
       case 'dir':
         if (termCurrentDir === 'C:\\SRAVAN') {
           printTerminalLine(` Directory of C:\\SRAVAN<br><br>
-2026-05-27  11:20 AM    &lt;DIR&gt;          .<br>
-2026-05-27  11:20 AM    &lt;DIR&gt;          ..<br>
-               0 File(s)              0 bytes
+2026-06-14  04:25 PM    &lt;DIR&gt;          .<br>
+2026-06-14  04:25 PM    &lt;DIR&gt;          ..<br>
+2026-06-14  04:25 PM           176,806 RESUME.PDF<br>
+               1 File(s)          176,806 bytes
                2 Dir(s)  512,118,784,000 bytes free`);
         } else if (termCurrentDir === 'C:\\') {
           printTerminalLine(` Directory of C:\\<br><br>
-2026-05-27  11:20 AM    &lt;DIR&gt;          SRAVAN<br>
-2026-05-27  11:20 AM    &lt;DIR&gt;          WHO_AM_I<br>
+2026-06-14  04:25 PM    &lt;DIR&gt;          SRAVAN<br>
+2026-06-14  04:25 PM    &lt;DIR&gt;          WHO_AM_I<br>
                0 File(s)              0 bytes
                2 Dir(s)  512,118,784,000 bytes free`);
         } else if (termCurrentDir === 'C:\\WHO_AM_I') {
           printTerminalLine(` Directory of C:\\WHO_AM_I<br><br>
-2026-05-27  11:20 AM    &lt;DIR&gt;          .<br>
-2026-05-27  11:20 AM    &lt;DIR&gt;          ..<br>
-2026-05-27  11:20 AM               438 IDENT.BAT<br>
+2026-06-14  04:25 PM    &lt;DIR&gt;          .<br>
+2026-06-14  04:25 PM    &lt;DIR&gt;          ..<br>
+2026-06-14  04:25 PM               438 IDENT.BAT<br>
                1 File(s)            438 bytes
                2 Dir(s)  512,118,784,000 bytes free`);
         }
@@ -239,6 +250,53 @@ Systems & Embedded Systems Engineer | Future AI Trajectory Focus.`);
         } else {
           printTerminalLine('The system cannot find the path specified.');
         }
+        break;
+
+      case 'cat':
+      case 'type':
+        if (!argument) {
+          printTerminalLine('Command requires a target file parameter. Usage: cat [filename]');
+          break;
+        }
+        const fileTarget = argument.trim().toLowerCase();
+        if (fileTarget === 'resume.pdf' || fileTarget === 'resume') {
+          if (termCurrentDir === 'C:\\SRAVAN' || fileTarget === 'resume.pdf') {
+            printTerminalLine('<span style="color: var(--accent-red);">[SYSTEM] Launching Resume / CV document (RESUME.PDF)...</span>');
+            window.open('Resume.pdf', '_blank');
+          } else {
+            printTerminalLine('The system cannot find the file specified.');
+          }
+        } else if (fileTarget === 'ident.bat' || fileTarget === 'ident') {
+          if (termCurrentDir === 'C:\\WHO_AM_I' || fileTarget === 'ident.bat') {
+            printTerminalLine(`@echo off<br>
+echo =============================<br>
+echo        SYSTEM ID<br>
+echo =============================<br>
+echo Ident       : SRAVAN<br>
+echo Signature   : Carbon-Based Neural Engine<br>
+echo Origin      : Terra, Land of the Saffron Veil (Sol System)<br>
+echo Instantiated: +1.1527722E9 post Unix-Epoch<br>
+echo Synchronized: +1.7422362E9<br>
+echo Architecture: Synaptic enigma, self-evolving<br>
+echo Mission     : Weaving cognition from chaos<br>
+echo Status      : Active<br>
+echo =============================<br>
+echo * PHONE: +91 6305659884<br>
+echo * EMAIL: gvsravan007@gmail.com<br>
+echo * GITHUB: github.com/sravangantla007<br>
+echo * LINKEDIN: LinkedIn Profile`, true);
+          } else {
+            printTerminalLine('The system cannot find the file specified.');
+          }
+        } else {
+          printTerminalLine('The system cannot find the file specified.');
+        }
+        break;
+
+      case 'resume':
+      case 'resume.pdf':
+        printTerminalLine('<span style="color: var(--accent-red);">[SYSTEM] Opening Resume / CV document (RESUME.PDF)...</span>');
+        window.open('Resume.pdf', '_blank');
         break;
         
       case 'ident':

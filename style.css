@@ -880,9 +880,62 @@ footer {
   gap: 2.5rem;
 }
 
-.footer-stat-node span {
+/* LIFE CLOCK */
+.life-clock-wrapper {
+  position: fixed;
+  top: 14px;
+  right: 3rem;
+  z-index: 1100;
+}
+
+.life-clock {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  background: rgba(4, 4, 6, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-cosmic);
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7), inset 0 0 10px rgba(255, 51, 85, 0.05);
+  transition: all var(--transition-speed);
+}
+
+.life-clock:hover {
+  border-color: var(--accent-yellow);
+  box-shadow: 0 0 15px var(--accent-yellow-glow);
+}
+
+.life-clock .clock-label {
+  color: var(--accent-green);
+  font-weight: 700;
+  text-shadow: 0 0 8px var(--accent-green-glow);
+}
+
+.life-clock .clock-val {
+  color: #ffffff;
+  font-weight: 700;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+}
+
+.life-clock .clock-unit {
   color: var(--accent-red);
-  font-weight: bold;
+  font-weight: 700;
+  text-shadow: 0 0 8px var(--accent-red-glow);
+}
+
+@media (max-width: 768px) {
+  .life-clock-wrapper {
+    top: 14px;
+    right: 1.5rem;
+  }
+  .life-clock {
+    font-size: 0.72rem;
+    padding: 0.25rem 0.5rem;
+  }
 }
 
 /* ==========================================================================

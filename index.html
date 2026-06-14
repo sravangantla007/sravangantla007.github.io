@@ -19,6 +19,15 @@
   <!-- Background Space Canvas Particles -->
   <canvas id="star-field-canvas"></canvas>
 
+  <!-- Dynamic life clock showing time since birth in seconds -->
+  <div class="life-clock-wrapper">
+    <div class="life-clock" id="life-clock-container">
+      <span class="clock-label">UPTIME:</span>
+      <span class="clock-val" id="life-clock-val">0000000000</span>
+      <span class="clock-unit">s</span>
+    </div>
+  </div>
+
   <!-- ==========================================================================
        NAVIGATION HUD
        ========================================================================== -->
@@ -76,8 +85,8 @@
         
         <div class="hero-specs-hud">
           <div class="spec-hud-item">
-            <div class="spec-hud-val" id="cgpa-count">8.29</div>
-            <div class="spec-hud-lbl">IIT Tirupati CGPA</div>
+            <div class="spec-hud-val">IIT Tirupati</div>
+            <div class="spec-hud-lbl">Electrical Engineering</div>
           </div>
           <div class="spec-hud-item">
             <div class="spec-hud-val">Avionics Head</div>
@@ -412,11 +421,15 @@
       <!-- Card 4: Education & Details -->
       <div class="hud-panel skills-card">
         <h3 class="skills-card-title"><i class="fa-solid fa-graduation-cap"></i> EDUCATION CONTEXT</h3>
-        <div style="display: flex; flex-direction: column; gap: 0.8rem; font-family: var(--font-mono); font-size: 0.8rem; color: #94a3b8;">
+        <div style="display: flex; flex-direction: column; gap: 0.8rem; font-family: var(--font-mono); font-size: 0.8rem; color: #94a3b8; margin-bottom: 1rem;">
           <div><span style="color: var(--accent-red);">[INSTITUTION]</span> IIT Tirupati (B.Tech EE, 2024-2028)</div>
-          <div><span style="color: var(--accent-red);">[CGPA]</span> 8.29 Cumulative Grade</div>
           <div><span style="color: var(--accent-red);">[SECONDARY]</span> Intermediate Board AP (92.5%, 2022-2024)</div>
           <div><span style="color: var(--accent-red);">[SECONDARY]</span> Class X Board AP (92.5%, 2022)</div>
+        </div>
+        <div style="margin-top: 1rem;">
+          <a href="Resume.pdf" target="_blank" class="btn-launch-sub" style="display: inline-flex; border-color: var(--accent-red); color: var(--accent-red); text-shadow: none; font-size: 0.75rem; padding: 0.45rem 1rem;">
+            Open Resume / CV <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
         </div>
       </div>
     </div>
